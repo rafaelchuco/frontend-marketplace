@@ -16,6 +16,12 @@ const getAuthToken = () =>
     .find((cookie) => cookie.startsWith("auth_token="))
     ?.split("=")[1];
 
+const fieldClassName =
+  "w-full rounded-xl border border-[var(--line)] bg-[#fbfdfc] px-3 py-2.5 text-[var(--foreground)] transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--brand)]";
+
+const labelClassName =
+  "mb-1 block text-sm font-semibold text-[var(--foreground)]";
+
 export default function AdminProducts({
   initialProducts,
   categories,
@@ -120,16 +126,16 @@ export default function AdminProducts({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div className="lg:col-span-1">
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+        <div className="rounded-[1.5rem] border border-[var(--line)] bg-white/92 p-6 shadow-[0_18px_45px_rgba(23,32,38,0.08)]">
+          <h2 className="mb-4 text-xl font-bold text-[var(--foreground)]">
             {editingId ? "Editar Producto" : "Crear Producto"}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className={labelClassName}>
                 Nombre
               </label>
               <input
@@ -139,12 +145,12 @@ export default function AdminProducts({
                 onChange={(e) =>
                   setFormData({ ...formData, nombre: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 text-gray-900"
+                className={fieldClassName}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className={labelClassName}>
                 Precio
               </label>
               <input
@@ -155,12 +161,12 @@ export default function AdminProducts({
                 onChange={(e) =>
                   setFormData({ ...formData, precio: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 text-gray-900"
+                className={fieldClassName}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className={labelClassName}>
                 Descripcion
               </label>
               <textarea
@@ -169,12 +175,12 @@ export default function AdminProducts({
                 onChange={(e) =>
                   setFormData({ ...formData, descripcion: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 text-gray-900"
+                className={fieldClassName}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className={labelClassName}>
                 Categoria
               </label>
               <select
@@ -182,7 +188,7 @@ export default function AdminProducts({
                 onChange={(e) =>
                   setFormData({ ...formData, CategoryId: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 text-gray-900"
+                className={fieldClassName}
               >
                 <option value="">Sin categoria</option>
                 {categories.map((category) => (
@@ -194,7 +200,7 @@ export default function AdminProducts({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className={labelClassName}>
                 ImageUrl
               </label>
               <input
@@ -203,14 +209,14 @@ export default function AdminProducts({
                 onChange={(e) =>
                   setFormData({ ...formData, ImageUrl: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 text-gray-900"
+                className={fieldClassName}
               />
             </div>
 
             <div className="flex gap-2">
               <button
                 type="submit"
-                className="flex-1 bg-gray-900 text-white py-2 rounded-md hover:bg-gray-800 transition-colors"
+                className="flex-1 rounded-xl bg-[var(--accent)] py-2.5 font-semibold text-white shadow-md shadow-orange-200/70 transition-colors hover:bg-[var(--accent-strong)]"
               >
                 {editingId ? "Actualizar" : "Crear"}
               </button>
@@ -218,7 +224,7 @@ export default function AdminProducts({
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-gray-600"
+                  className="rounded-xl border border-[var(--line)] px-4 py-2.5 font-medium text-[var(--ink-muted)] transition-colors hover:bg-[var(--surface-soft)]"
                 >
                   Cancelar
                 </button>
@@ -229,46 +235,46 @@ export default function AdminProducts({
       </div>
 
       <div className="lg:col-span-2">
-        <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+        <div className="overflow-hidden rounded-[1.5rem] border border-[var(--line)] bg-white/92 shadow-[0_18px_45px_rgba(23,32,38,0.08)]">
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="border-b border-[var(--line)] bg-[var(--surface-soft)]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase text-[var(--brand)]">
                   Nombre
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase text-[var(--brand)]">
                   Precio
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase text-[var(--brand)]">
                   Categoria
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase text-[var(--brand)]">
                   Acciones
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-[var(--line)]">
               {products.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                <tr key={product.id} className="transition-colors hover:bg-[var(--surface-soft)]/55">
+                  <td className="px-6 py-4 text-sm font-medium text-[var(--foreground)]">
                     {product.nombre}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                  <td className="px-6 py-4 text-sm font-semibold text-[var(--accent)]">
                     S/ {Number(product.precio).toFixed(2)}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                  <td className="px-6 py-4 text-sm text-[var(--ink-muted)]">
                     {product.Category?.nombre || "Sin categoria"}
                   </td>
                   <td className="px-6 py-4 text-sm text-right">
                     <button
                       onClick={() => handleEdit(product)}
-                      className="text-gray-600 hover:text-gray-900 mr-4"
+                      className="mr-4 font-semibold text-[var(--brand)] hover:text-[var(--brand-strong)]"
                     >
                       Editar
                     </button>
                     <button
                       onClick={() => handleDelete(product.id)}
-                      className="text-red-600 hover:text-red-800"
+                      className="font-semibold text-[var(--accent-strong)] hover:text-[#b93827]"
                     >
                       Eliminar
                     </button>

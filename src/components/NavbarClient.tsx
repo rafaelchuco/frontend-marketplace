@@ -62,7 +62,7 @@ export default function NavbarClient({ role }: NavbarClientProps) {
                 <ShoppingBag className="h-5 w-5 text-[var(--brand)]" />
               </div>
             </div>
-            <span className="text-xl font-bold tracking-tight text-gray-900">
+            <span className="text-xl font-bold tracking-tight text-[var(--foreground)]">
               Product<span className="text-[var(--accent)]">Store</span>
             </span>
           </Link>
