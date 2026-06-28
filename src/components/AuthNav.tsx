@@ -1,26 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 interface AuthNavProps {
-  initialRole: string | null;
+  role: string | null;
+  onLogout: () => void;
 }
 
-export default function AuthNav({ initialRole }: AuthNavProps) {
-  const router = useRouter();
-  const [role, setRole] = useState<string | null>(initialRole);
-
-  const handleLogout = () => {
-    document.cookie = "auth_token=; path=/; max-age=0";
-    document.cookie = "auth_role=; path=/; max-age=0";
-    document.cookie = "auth_user=; path=/; max-age=0";
-    setRole(null);
-    router.push("/login");
-    router.refresh();
-  };
-
+export default function AuthNav({ role, onLogout }: AuthNavProps) {
   if (!role) {
     return (
       <div className="flex items-center gap-3">
@@ -48,7 +35,7 @@ export default function AuthNav({ initialRole }: AuthNavProps) {
       </div>
       <button
         type="button"
-        onClick={handleLogout}
+        onClick={onLogout}
         className="text-sm font-medium text-red-500 hover:text-red-600 transition-colors px-3 py-2"
       >
         Salir

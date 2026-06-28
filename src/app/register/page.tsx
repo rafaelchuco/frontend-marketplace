@@ -34,8 +34,9 @@ export default function RegisterPage() {
       document.cookie = `auth_token=${data.data.token}; path=/; max-age=28800; SameSite=Lax`;
       document.cookie = `auth_role=${data.data.user.role}; path=/; max-age=28800; SameSite=Lax`;
       document.cookie = `auth_user=${encodeURIComponent(data.data.user.nombre)}; path=/; max-age=28800; SameSite=Lax`;
+      window.dispatchEvent(new Event("auth-changed"));
 
-      router.push("/");
+      router.replace("/");
       router.refresh();
     } catch (error) {
       console.error(error);

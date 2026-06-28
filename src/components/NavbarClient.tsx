@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Search, ShoppingBag } from "lucide-react";
 import AuthNav from "./AuthNav";
 import CartDrawer from "./CartDrawer";
@@ -10,8 +12,44 @@ interface NavbarClientProps {
   role: string | null;
 }
 
+const getCookieValue = (name: string) => {
+  if (typeof document === "undefined") return null;
+
+  return (
+    document.cookie
+      .split("; ")
+      .find((cookie) => cookie.startsWith(`${name}=`))
+      ?.split("=")[1] || null
+  );
+};
+
 export default function NavbarClient({ role }: NavbarClientProps) {
+  const router = useRouter();
   const { totalItems, isCartOpen, setIsCartOpen } = useCart();
+  const [currentRole, setCurrentRole] = useState<string | null>(role);
+
+  useEffect(() => {
+    const syncAuthRole = () => setCurrentRole(getCookieValue("auth_role"));
+
+    syncAuthRole();
+    window.addEventListener("auth-changed", syncAuthRole);
+    window.addEventListener("focus", syncAuthRole);
+
+    return () => {
+      window.removeEventListener("auth-changed", syncAuthRole);
+      window.removeEventListener("focus", syncAuthRole);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    document.cookie = "auth_token=; path=/; max-age=0";
+    document.cookie = "auth_role=; path=/; max-age=0";
+    document.cookie = "auth_user=; path=/; max-age=0";
+    window.dispatchEvent(new Event("auth-changed"));
+    setCurrentRole(null);
+    router.push("/login");
+    router.refresh();
+  };
 
   return (
     <>
@@ -36,7 +74,7 @@ export default function NavbarClient({ role }: NavbarClientProps) {
             >
               Explorar
             </Link>
-            {role === "ADMIN" && (
+            {currentRole === "ADMIN" && (
               <Link
                 href="/admin"
                 className="rounded-full bg-indigo-50 px-4 py-1.5 text-sm font-medium text-indigo-600/80 transition-all duration-200 hover:bg-indigo-100"
@@ -71,7 +109,7 @@ export default function NavbarClient({ role }: NavbarClientProps) {
               )}
             </button>
 
-            <AuthNav initialRole={role} />
+            <AuthNav role={currentRole} onLogout={handleLogout} />
           </div>
         </div>
       </div>
