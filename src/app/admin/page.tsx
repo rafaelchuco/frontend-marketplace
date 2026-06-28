@@ -44,10 +44,18 @@ export default async function AdminPage() {
   ]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">
-        Administracion de Productos
-      </h1>
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mb-8">
+        <span className="mb-3 inline-flex rounded-full bg-[var(--surface-soft)] px-4 py-1 text-xs font-bold uppercase text-[var(--brand)]">
+          Panel privado
+        </span>
+        <h1 className="text-3xl font-extrabold tracking-tight text-[var(--foreground)]">
+          Administración de Productos
+        </h1>
+        <p className="mt-2 text-[var(--ink-muted)]">
+          Crea, edita y organiza el catálogo desde un solo lugar.
+        </p>
+      </div>
       <AdminProducts initialProducts={products} categories={categories} />
     </div>
   );

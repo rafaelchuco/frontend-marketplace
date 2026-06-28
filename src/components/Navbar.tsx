@@ -6,7 +6,7 @@ export default async function Navbar() {
   const role = cookieStore.get("auth_role")?.value || null;
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-gray-100/50 bg-white/70 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-[var(--line)] bg-white/82 shadow-[0_10px_35px_rgba(23,32,38,0.06)] backdrop-blur-xl">
       <NavbarClient role={role} />
     </nav>
   );

@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f8f7;
+  --foreground: #172026;
+  --surface: #ffffff;
+  --surface-soft: #edf7f4;
+  --ink-muted: #637279;
+  --brand: #0f766e;
+  --brand-strong: #115e59;
+  --accent: #f9735b;
+  --accent-strong: #e0523c;
+  --gold: #f4b740;
+  --line: #dbe7e3;
 }
 
 @theme inline {
@@ -12,14 +21,16 @@
   --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
+  min-height: 100vh;
+  background-image:
+    linear-gradient(180deg, rgba(237, 247, 244, 0.92), rgba(245, 248, 247, 0.98) 42%, rgba(255, 255, 255, 0.96)),
+    linear-gradient(135deg, rgba(15, 118, 110, 0.08), rgba(249, 115, 91, 0.06));
+}
+
+::selection {
+  background: rgba(249, 115, 91, 0.25);
+  color: #172026;
 }

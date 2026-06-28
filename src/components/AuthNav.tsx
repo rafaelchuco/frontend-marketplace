@@ -13,13 +13,13 @@ export default function AuthNav({ role, onLogout }: AuthNavProps) {
       <div className="flex items-center gap-3">
         <Link
           href="/login"
-          className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors px-3 py-2"
+          className="px-3 py-2 text-sm font-medium text-[var(--ink-muted)] transition-colors hover:text-[var(--brand)]"
         >
           Iniciar sesión
         </Link>
         <Link
           href="/register"
-          className="text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg shadow-md shadow-indigo-100 transition-all active:scale-95"
+          className="rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white shadow-md shadow-orange-200/70 transition-all hover:bg-[var(--accent-strong)] active:scale-95"
         >
           Registrarse
         </Link>
@@ -29,14 +29,14 @@ export default function AuthNav({ role, onLogout }: AuthNavProps) {
 
   return (
     <div className="flex items-center gap-4">
-      <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-600">
-        <div className="w-2 h-2 rounded-full bg-green-500" />
+      <div className="flex items-center gap-2 rounded-full bg-[var(--surface-soft)] px-3 py-1 text-[var(--brand)]">
+        <div className="h-2 w-2 rounded-full bg-[var(--gold)]" />
         <span className="text-xs font-medium capitalize">{role}</span>
       </div>
       <button
         type="button"
         onClick={onLogout}
-        className="text-sm font-medium text-red-500 hover:text-red-600 transition-colors px-3 py-2"
+        className="px-3 py-2 text-sm font-medium text-[var(--accent-strong)] transition-colors hover:text-[#b93827]"
       >
         Salir
       </button>

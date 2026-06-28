@@ -44,20 +44,23 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 px-4 py-12">
-      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+    <div className="flex min-h-[80vh] items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md space-y-8 rounded-[1.75rem] border border-[var(--line)] bg-white/92 p-10 shadow-[0_28px_70px_rgba(23,32,38,0.12)] backdrop-blur">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+          <span className="mb-3 inline-flex rounded-full bg-[var(--surface-soft)] px-4 py-1 text-xs font-bold uppercase text-[var(--brand)]">
+            Acceso seguro
+          </span>
+          <h1 className="text-4xl font-extrabold tracking-tight text-[var(--foreground)]">
             Bienvenido
           </h1>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-[var(--ink-muted)]">
             Ingresa tus credenciales para acceder
           </p>
         </div>
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div className="space-y-4 rounded-md shadow-sm">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1 ml-1">
+              <label className="mb-1 ml-1 block text-sm font-semibold text-[var(--foreground)]">
                 Email
               </label>
               <input
@@ -65,12 +68,12 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all sm:text-sm"
+                className="relative block w-full appearance-none rounded-xl border border-[var(--line)] bg-[#fbfdfc] px-4 py-3 text-[var(--foreground)] placeholder:text-gray-400 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--brand)] sm:text-sm"
                 placeholder="tu@email.com"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1 ml-1">
+              <label className="mb-1 ml-1 block text-sm font-semibold text-[var(--foreground)]">
                 Password
               </label>
               <input
@@ -78,29 +81,29 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all sm:text-sm"
+                className="relative block w-full appearance-none rounded-xl border border-[var(--line)] bg-[#fbfdfc] px-4 py-3 text-[var(--foreground)] placeholder:text-gray-400 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--brand)] sm:text-sm"
                 placeholder="••••••••"
               />
             </div>
           </div>
 
           {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
-              <p className="text-sm text-red-700">{error}</p>
+            <div className="rounded-xl border-l-4 border-[var(--accent-strong)] bg-orange-50 p-4">
+              <p className="text-sm text-[var(--accent-strong)]">{error}</p>
             </div>
           )}
 
           <button
             type="submit"
-            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+            className="group relative flex w-full justify-center rounded-xl border border-transparent bg-[var(--accent)] px-4 py-3 text-sm font-bold text-white shadow-lg shadow-orange-200/80 transition-all hover:scale-[1.02] hover:bg-[var(--accent-strong)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 active:scale-[0.98]"
           >
             Iniciar Sesión
           </button>
         </form>
         <div className="text-center mt-6">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-[var(--ink-muted)]">
             ¿No tienes cuenta?{" "}
-            <Link href="/register" className="font-bold text-indigo-600 hover:text-indigo-500 transition-colors">
+            <Link href="/register" className="font-bold text-[var(--brand)] transition-colors hover:text-[var(--brand-strong)]">
               Regístrate ahora
             </Link>
           </p>
